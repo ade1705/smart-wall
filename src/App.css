@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700&display=swap');
 .App {
   text-align: center;
 }
@@ -24,6 +25,13 @@
   color: white;
 }
 
+.flex-1 {
+  flex: 1
+}
+
+.white-bg-500 {
+  background: rgba(255,255,255,0.4);
+}
 
 .container {
   background-image: url("https://images.unsplash.com/photo-1449247709967-d4461a6a6103?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80");
