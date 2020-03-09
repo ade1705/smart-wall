@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Flex, Heading, Image, Badge, Text, Box} from "@chakra-ui/core/dist";
+import {Flex, Heading, Grid, Badge, Text, Box} from "@chakra-ui/core/dist";
 import NewsService from "./News/NewsService";
 import {INews} from "./News/INews";
 import {NewsComponent} from "./News/NewsComponent";
@@ -18,23 +18,12 @@ class News extends React.PureComponent<{}, AllNewsState> {
     }
 
     render() {
-        let string = 'df';
-        const waldo: INews = {
-            title: string,
-            urlToImage: string,
-            url: string,
-            source: string,
-            publishedAt: string,
-            content: string,
-        }
-        const as: INews[] = [waldo, waldo]
         return (
             <>
-                <Flex flexDirection="column" w="25%">
-                    <Heading as="h3" size="lg" fontWeight="light">Just for you, Ade.</Heading>
-                    <Box>
+                <Flex flexDirection="column" w="25%" overflow="hidden">
+                    <Heading as="h3" size="lg" fontWeight="thin" color="gray.400" mb={5}>Just for you, Ade.</Heading>
+                    <Box overflow="hidden">
                         <NewsComponent newsArray={this.state.AllNews}/>
-                        <Text>sdff</Text>
                     </Box>
                 </Flex>
             </>

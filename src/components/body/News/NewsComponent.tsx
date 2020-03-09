@@ -5,7 +5,7 @@ import { CarouselProvider, Slider, Slide, DotGroup, ButtonBack, ButtonNext } fro
 import 'pure-react-carousel/dist/react-carousel.es.css';
 const SingleNewsComponent = (props:{ news: INews, key: number}) => {
 	return <Slide index={props.key}  className="height-140">
-		<Flex justifyContent="space-between" paddingY={5} bg="white" paddingX={5} marginTop={5} >
+		<Flex justifyContent="space-between" paddingY={5} bg="white" paddingX={5} marginBottom={5} shadow="md">
 			<Flex flexDirection="column" flex="1" mr={10}>
 				<Flex>
 					<Badge fontSize="0.5em" variantColor="green">Category</Badge>
