@@ -16,13 +16,14 @@ class NewsRepository
 		title: article.title,
 		urlToImage: article.urlToImage,
 		url: article.url,
-		source: article.source,
+		source: article.source.name,
 		publishedAt: article.publishedAt
 	}));
 
 	async getNews() {
 		try{
 			let response = await this.get();
+			console.log(this.mapResponse(response.articles));
 			return this.mapResponse(response.articles);
 		}catch(err){
 			throw new Error(err)
