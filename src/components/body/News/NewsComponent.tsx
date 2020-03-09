@@ -1,10 +1,11 @@
 import {Badge, Box, Flex, Heading, Image, Text} from "@chakra-ui/core/dist";
 import React from "react";
 import {INews} from "./INews";
-let title = 'https://cdn.cnn.com/cnnnext/dam/assets/200306040557-woman-home-sick-stock-super-tease.jpg';
-const SingleNewsComponent = (props:{ news: INews}) => {
-	return <>
-		<Flex justifyContent="space-between" paddingY={5} bg="white" paddingX={5} marginTop={2}>
+import { CarouselProvider, Slider, Slide, DotGroup, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import 'pure-react-carousel/dist/react-carousel.es.css';
+const SingleNewsComponent = (props:{ news: INews, key: number}) => {
+	return <Slide index={props.key}  className="height-140">
+		<Flex justifyContent="space-between" paddingY={5} bg="white" paddingX={5} marginTop={5} >
 			<Flex flexDirection="column" flex="1" mr={10}>
 				<Flex>
 					<Badge fontSize="0.5em" variantColor="green">Category</Badge>
@@ -23,17 +24,35 @@ const SingleNewsComponent = (props:{ news: INews}) => {
 					rounded="rounded"
 					objectFit="cover"
 					src={props.news.urlToImage}
-					alt="Segun Adebayo"
+					alt={props.news.title}
 				/>
 			</Flex>
 		</Flex>
-	</>;
+	</Slide>;
 };
 
 export const NewsComponent:React.FC<{newsArray: INews[]}> = ({newsArray}) => {
 	return <>
-		{
-			newsArray.map((news, index:number) => <SingleNewsComponent key={index} news={news}></SingleNewsComponent>)
-		}
+		<CarouselProvider
+			visibleSlides={3}
+			totalSlides={newsArray.length}
+			orientation="vertical"
+			naturalSlideWidth={100}
+			naturalSlideHeight={30}
+			step={2}
+			interval={2500}
+			isPlaying={true}
+			infinite={true}
+		>
+			<Slider>
+				{
+					newsArray.map((news, index:number) => <SingleNewsComponent key={index} news={news}></SingleNewsComponent>)
+				}
+			</Slider>
+			<ButtonBack>Back</ButtonBack>
+
+			<ButtonNext>Next</ButtonNext>
+			<DotGroup dotNumbers />
+		</CarouselProvider>
 		</>;
 }
