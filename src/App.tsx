@@ -6,6 +6,7 @@ import News from "./components/body/News";
 import {NewsComponent} from "./components/body/News/NewsComponent";
 import Lights from "./components/Controls/Lights";
 import Controls from "./components/Controls/Controls";
+import {Unsplash} from "./components/Image/Unsplash";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
 		    <Header/>
 		    <Flex justifyContent="space-between" paddingY={20} flex={1}>
 			    <News></News>
-			    <Box>
+			    <Box w="65%">
 				    <Heading as="h3" size="lg" fontWeight="thin" color="gray.400" mb={5}>Recent</Heading>
 				    <Grid templateColumns="repeat(3, 1fr)" gap={6}>
 					    <Box w="100%">
@@ -25,7 +26,7 @@ function App() {
 						            allow="encrypted-media"></iframe>
 					    </Box>
 					    <Controls/>
-					    <Box w="100%" h="10" bg="blue.500" />
+					    <Unsplash></Unsplash>
 				    </Grid>
 			    </Box>
 		    </Flex>

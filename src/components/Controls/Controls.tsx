@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Temperature from "./Temperature";
 import Lights from "./Lights";
 import {Box, Heading} from "@chakra-ui/core/dist";
+import {Temperature} from "./Temperature";
 
 class Controls extends React.PureComponent<{}, {}> {
 	render() {

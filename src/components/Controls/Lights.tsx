@@ -49,7 +49,7 @@ class Lights extends React.PureComponent<{}, LightState> {
 
 	render() {
 		const LightsComponent = this.state.lights.map((light, index) =>
-			<Flex justify="space-between" align="center" my={2}>
+			<Flex justify="space-between" align="center" my={2} key={index}>
 				<FormLabel htmlFor={slugify(light.name)}>{light.name}</FormLabel>
 				<Switch id={slugify(light.name)} isChecked={light.isOn} onChange={() => this.switchLight(index)} />
 			</Flex>

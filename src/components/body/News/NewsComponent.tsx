@@ -3,8 +3,8 @@ import React from "react";
 import {INews} from "./INews";
 import { CarouselProvider, Slider, Slide, DotGroup, ButtonBack, ButtonNext } from 'pure-react-carousel';
 import 'pure-react-carousel/dist/react-carousel.es.css';
-const SingleNewsComponent = (props:{ news: INews, key: number}) => {
-	return <Slide index={props.key}  className="height-140">
+const SingleNewsComponent = (props:{ news: INews, index: number}) => {
+	return <Slide index={props.index}  className="height-140">
 		<Flex justifyContent="space-between" paddingY={5} bg="white" paddingX={5} marginBottom={5} shadow="md">
 			<Flex flexDirection="column" flex="1" mr={10}>
 				<Flex>
@@ -46,7 +46,7 @@ export const NewsComponent:React.FC<{newsArray: INews[]}> = ({newsArray}) => {
 		>
 			<Slider>
 				{
-					newsArray.map((news, index:number) => <SingleNewsComponent key={index} news={news}></SingleNewsComponent>)
+					newsArray.map((news, index:number) => <SingleNewsComponent key={index} index={index} news={news}></SingleNewsComponent>)
 				}
 			</Slider>
 			<ButtonBack>Back</ButtonBack>

@@ -3,8 +3,7 @@ import { Slider } from '@chakra-ui/core';
 import {SliderFilledTrack, SliderTrack, SliderThumb, Box, Heading} from "@chakra-ui/core/dist";
 import { MdGraphicEq } from "react-icons/md"
 
-class Temperature extends React.PureComponent<{}, {}> {
-	render() {
+export const  Temperature:React.FC<{}> = () => {
 		return (
 			<Box shadow="md" p={5}>
 				<Heading as="h3" size="sm" color="gray.800" mb={5}>Temperature</Heading>
@@ -17,7 +16,4 @@ class Temperature extends React.PureComponent<{}, {}> {
 				</Slider>
 			</Box>
 		);
-	}
 }
-
-export default Temperature;
