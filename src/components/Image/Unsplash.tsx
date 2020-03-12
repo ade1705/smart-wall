@@ -6,16 +6,14 @@ import {
 	FormControl,
 	Input,
 	Menu,
-	Button,
 	MenuButton,
 	MenuList,
 	MenuItem,
-	Icon,
-	Heading
+	Icon
 } from "@chakra-ui/core/dist";
 import ImageFetcher from "./ImageFetcher";
 
-const composedImages = (images: Array<string>) => images.map((image:string, index:number) =>
+const composedImages = (images: Array<string>, wallpaperCallback: any) => images.map((image:string, index:number) =>
 	<Box shadow="sm" key={index}>
 		<Image src={image} />
 		<Box className="image-actions">
@@ -24,7 +22,7 @@ const composedImages = (images: Array<string>) => images.map((image:string, inde
 					<Icon name="sun" color="white"/>
 				</MenuButton>
 				<MenuList>
-					<MenuItem>Set as Wallpaper</MenuItem>
+					<MenuItem onClick={() => wallpaperCallback(image)}>Set as Wallpaper</MenuItem>
 					<MenuItem>Download</MenuItem>
 				</MenuList>
 			</Menu>
@@ -32,7 +30,7 @@ const composedImages = (images: Array<string>) => images.map((image:string, inde
 	</Box>
 );
 
-export const Unsplash:React.FC = () => {
+export const Unsplash:React.FC<{changeWallpaperCallback: any}> = ({changeWallpaperCallback}) => {
 	const [isLoading, setLoading] = useState(false);
 	const [searchQuery, setSearchQuery] = useState<string>('cape town');
 	const [images, setImages] = useState<Array<string>>([]);
@@ -41,7 +39,6 @@ export const Unsplash:React.FC = () => {
 	useEffect(() => {
 		try {
 			(async function() {
-				console.log(await imageFetcher.getImages(searchQuery));
 				setImages(await imageFetcher.getImages(searchQuery));
 			})();
 		} catch (error) {
@@ -53,6 +50,16 @@ export const Unsplash:React.FC = () => {
 		const element = event.currentTarget as HTMLFormElement;
 		setSearchQuery(element.searchQuery.value);
 		event.preventDefault();
+	};
+
+	const wallpaperCallback = (wallpaper: string) => {
+		changeWallpaperCallback(increaseWallpaperSize(wallpaper));
+	}
+
+	const increaseWallpaperSize = (wallpaper: string): string => {
+		let imageArray = wallpaper.split('&');
+		imageArray[5] = '1200';
+		return imageArray.join('&');
 	};
 
 	return <>
@@ -68,7 +75,7 @@ export const Unsplash:React.FC = () => {
 					className="my-masonry-grid"
 					columnClassName="my-masonry-grid_column"
 				>
-					{composedImages(images)}
+					{composedImages(images, wallpaperCallback)}
 				</Masonry>
 			</Box>
 		</Box>

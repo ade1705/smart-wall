@@ -1,5 +1,6 @@
 import React, {} from 'react';
 import {Box, Flex, FormLabel, Heading, Switch} from "@chakra-ui/core/dist";
+import {Light} from "./Light";
 
 const lights = [
 	{
@@ -44,15 +45,11 @@ class Lights extends React.PureComponent<{}, LightState> {
 		this.setState({
 			lights: newLightState
 		});
-
 	}
 
 	render() {
 		const LightsComponent = this.state.lights.map((light, index) =>
-			<Flex justify="space-between" align="center" my={2} key={index}>
-				<FormLabel htmlFor={slugify(light.name)}>{light.name}</FormLabel>
-				<Switch id={slugify(light.name)} isChecked={light.isOn} onChange={() => this.switchLight(index)} />
-			</Flex>
+			<Light light={light} index={index} callBack={this.switchLight}/>
 		);
 
 		return (

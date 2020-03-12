@@ -8,7 +8,6 @@ export default class ImageFetcher {
 
 	async getImages(searchQuery:string = 'sing') {
 		try{
-			console.log(this.prepareURL(searchQuery));
 			let response = await this.get(this.prepareURL(searchQuery));
 			return this.mapResponse(response.results);
 		}catch(err){
